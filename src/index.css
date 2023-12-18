@@ -115,3 +115,40 @@ nav {
   align-items: center;
   gap: 3rem;
 }
+
+
+
+  /***************** Footer  *****************/
+  footer {
+    background: rgb(5, 5, 6);
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+  .footer_category {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    /* margin-top: 4rem; */
+    margin-bottom: 4rem;
+  }
+
+  .footer_category a {
+    background: gray;
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--readius-2);
+    transition: var(--transition);
+  }
+  .footer_category a:hover {
+    background: white;
+    color: black;
+  }
+  .footer_copyright {
+    text-align: center;
+    border-top: 2px solid rgb(61, 53, 53);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white;
+  }
