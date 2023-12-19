@@ -4,7 +4,7 @@ import Child from '../images/baby.jpg'
 
 const PostAuthor = () => {
   return (
-    <Link to={`/posts/users/jdhskd`}>
+    <Link to={`/posts/users/jdhskd`} className='post_author'>
       <div className="post_athor_avatar">
         <img src={Child} alt="" />
       </div>
