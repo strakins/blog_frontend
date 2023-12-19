@@ -56,6 +56,8 @@ section {
 
 .btn {
   display: inline-block;
+  background: rgb(69, 78, 212);
+  color: white;
   width: fit-content;
   padding: 0.5rem 1rem;
   border-radius: var(--readius-2);
@@ -65,7 +67,7 @@ section {
 }
 
 .btn:hover {
-  background: var(--color-gray-900);
+  background: rgb(134, 134, 225);
   color: white;
 }
 
@@ -75,6 +77,19 @@ img {
   width: 100%;
 }
 
+
+.center {
+  text-align: center;
+  padding-top: 5rem;
+  margin-inline: center;
+  display: block;
+  width: 100%;
+}
+
+.error-page h2 {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
 
 
 /***************** NavBar  *****************/
@@ -92,6 +107,7 @@ nav {
   z-index: 1;
   border-bottom: 4px solid var(--color-bg);
   backdrop-filter: blur(20px);
+  /* margin-bottom: 6rem; */
 }
 
 .nav__container {
@@ -152,3 +168,32 @@ nav {
     margin-bottom: 5px;
     color: white;
   }
+
+
+
+
+
+/***************** HOME  *****************/
+
+
+/***************** POSTS  *****************/
+.post_conatiner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.post {
+  background: white;
+  padding: 10px;
+  border-radius: var(--readius-4);
+  transition: var(--transition);
+  cursor: default;
+}
+.post:hover {
+  box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.1);
+}
+.post_thumbnail {
+  border-radius: var(--readius-3);
+  overflow: hidden;
+}
