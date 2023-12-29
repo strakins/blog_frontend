@@ -19,7 +19,7 @@ const Authors = () => {
         <div className="container authors_conatiner">
           {
             authors.map(({id, avatar, name, posts}) => {
-              return <Link key={id} to={`posts/users/${id}`} className='author'>
+              return <Link key={id} to={`/posts/users/${id}`} className='author'>
                 <div className="author_avatar">
                   <img src={avatar} alt={`Appearance of ${name}`} /> 
                 </div>

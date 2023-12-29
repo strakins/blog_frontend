@@ -354,3 +354,100 @@ input, select, textarea {
   border: 0.3rem solid var(--color-bg);
   overflow: hidden;
 }
+.author_info p {
+  margin-top: 1rem;
+}
+
+
+
+
+  /***************** Authors Page  *****************/
+  .profile_container {
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+  .profile_details {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .avatar_wrapper {
+    width: 300px;
+    position: relative;
+    margin-inline: auto;
+  }
+  .user_avatar {
+    height: 320px;
+    width: 320px;
+    border-radius: 50%;
+    border: 16px solid white;
+    overflow: hidden;
+  }
+  .avatar_form input {
+    display: none;
+  }
+  .avatar_form {
+    height: 1rem;
+  }
+  .avatar_form label, .profile_avatar-btn {
+    background: rgb(8, 89, 175);
+    color: white;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 3rem;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 6px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+  }
+  .profile_details h1 {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .profile_form {
+    width: var(--form-width);
+    margin-inline: auto;
+    margin-top: 2rem;
+    display: grid;
+    place-items: center;
+  }
+
+
+
+
+  /***************** Authors Page  *****************/
+  .dashboard_conatiner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .dashboard_post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--readius-3);
+  }
+  .dashboard_post-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .dashboard_post-thumbnail {
+    width: 6rem;
+    border-radius: var(--readius-1);
+    overflow: hidden;
+  }
+
+  .dashboard_post-actions {
+    display: flex;
+    gap: 1rem;
+  }
