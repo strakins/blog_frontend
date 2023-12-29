@@ -60,7 +60,8 @@ section {
   background: rgb(69, 78, 212);
   color: white;
   width: fit-content;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
   border-radius: var(--readius-2);
   font-weight: 500;
   /* margin-right: 1rem; */
@@ -325,8 +326,12 @@ input, select, textarea {
   margin-bottom: 1rem;
 }
 
-
-
+/* REACT QUILL */
+.ql-editor {
+  overflow: scroll;
+  background: white;
+  height: 12rem !important;
+}
 
 /***************** Authors Page  *****************/
 .authors_conatiner {
