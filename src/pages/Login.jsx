@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { UserContext } from '../context/userContext';
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -7,7 +9,26 @@ const Login = () => {
     password: '', 
   })
 
-  const changeInputHandler = (e) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+ 
+  const{setCurrentUser} = useContext(UserContext)
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('')
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/login`, userData);
+      const user = res.data;
+      setCurrentUser(user)
+      navigate('/')
+    } catch (err) {
+      setError(err.response.data.message)
+    }
+
+  }
+
+  const changeInputHandler = async (e) => {
     setUserData(prev => {
       return {...prev, [e.target.name]: e.target.value}
     })
@@ -18,8 +39,8 @@ const Login = () => {
     <section className="register">
       <div className="container">
         <h2>Login</h2>
-        <form action="" className='form login_form'>
-          <p className='form_error_message'>You Entered Invalid Credentials</p>
+        <form action="" className='form login_form' onSubmit={handleLogin}>
+          { error && <p className='form_error_message'>{error}</p>}
           <input 
             type="email" 
             placeholder='Email'

@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { UserContext } from './../context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePosts = () => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('uncategorized');
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState('');
+  const navigate = useNavigate();
 
   const modules = {
     toolbar: [
@@ -27,6 +30,15 @@ const CreatePosts = () => {
     'Agriculture', 'Business', 'Education', 'Entertianment', 
     'Art', 'Investment', 'Uncategorized', 'Weather'
   ]
+
+  const {currentUser} = useContext(UserContext);
+  const token = currentUser?.token;
+  // If token does not exist, redirect to login page
+  useEffect(() => {
+    if(!token) {
+      navigate('/login')
+    }
+  })
 
   return (
     <section className="create-post">
