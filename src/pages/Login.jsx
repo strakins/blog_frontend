@@ -9,6 +9,11 @@ const Login = () => {
     password: '', 
   })
 
+//   newPass234
+
+
+// blue123
+
   const navigate = useNavigate();
   const [error, setError] = useState('');
  
@@ -51,7 +56,7 @@ const Login = () => {
           />
           <input 
             type="password" 
-            placeholder='Enter Desired Password'
+            placeholder='Enter Password'
             className='form register-form'
             name='password'
             value={userData.password} 

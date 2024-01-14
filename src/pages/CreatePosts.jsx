@@ -9,8 +9,7 @@ const CreatePosts = () => {
   const [category, setCategory] = useState('uncategorized');
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-  const navigate = useNavigate();
-
+  
   const modules = {
     toolbar: [
       [{'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -30,7 +29,8 @@ const CreatePosts = () => {
     'Agriculture', 'Business', 'Education', 'Entertianment', 
     'Art', 'Investment', 'Uncategorized', 'Weather'
   ]
-
+  
+  const navigate = useNavigate();
   const {currentUser} = useContext(UserContext);
   const token = currentUser?.token;
   // If token does not exist, redirect to login page

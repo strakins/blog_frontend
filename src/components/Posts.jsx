@@ -1,23 +1,49 @@
-import { useState }  from 'react';
+import { useEffect, useState }  from 'react';
 import PostItem from './PostItem';
-import { TestPosts } from '../data';
+import Loader from '../components/Loader';
+// import { TestPosts } from '../data';
+import axios from 'axios'
 
 
 
 const Posts = () => {
 
-    const [posts, setPosts] = useState(TestPosts)
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsloading] = useState(false)
+
+  useEffect(() => {
+    
+    const fetchPosts = async () => {
+    setIsloading(true);
+    try {
+      const res = await axios.get(`http://localhost:5000/api/posts/`)
+      setPosts(res?.data)
+      console.log(posts)
+    } catch (err) {
+      console.log(err)
+    }
+
+    setIsloading(false)
+   } 
+
+   fetchPosts();
+  }, [])
+
 
   return (
     <section className="posts">
         { posts.length > 0 ?
           <div className="container post_conatiner">
             {
-                posts.map(({id, thumbnail, category, title, desc, authorID}) => 
-                <PostItem key={id} postId={id} thumbnail={thumbnail} category={category} title={title} desc={desc} authorID={authorID}  /> )
+                posts.map(({_id: id, thumbnail, category, title, description, creator: authorID, createdAt}) => 
+                <PostItem key={id} postId={id} thumbnail={thumbnail} category={category} createdAt={createdAt} title={title} description={description} authorID={authorID}  /> )
             }
-          </div> :
-          <h2 className='center'>No Post Found</h2>
+          </div>
+           :
+          //  <div className='loader-control'>
+             <Loader />
+          //  </div>
+          // <h2 className='center'>No Post Found</h2>
         }
     </section>
   )

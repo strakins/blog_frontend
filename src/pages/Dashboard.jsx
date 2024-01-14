@@ -1,10 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { TestPosts } from '../data.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/userContext.js';
 
 const Dashboard = () => {
 
-  const [posts, setPosts] = useState(TestPosts)
+  const [posts, setPosts] = useState(TestPosts);
+  const navigate = useNavigate();
+  const {currentUser} = useContext(UserContext);
+  const token = currentUser?.token;
+  // If token does not exist, redirect to login page
+  useEffect(() => {
+    if(!token) {
+      navigate('/login')
+    }
+  })
 
   return (
     <section className="dashboard">

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { UserContext } from '../context/userContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
 
 const EditPosts = () => {
   const [title, setTitle] = useState('');
@@ -8,6 +10,15 @@ const EditPosts = () => {
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState('');
 
+  const navigate = useNavigate();
+  const {currentUser} = useContext(UserContext);
+  const token = currentUser?.token;
+  // If token does not exist, redirect to login page
+  useEffect(() => {
+    if(!token) {
+      navigate('/login')
+    }
+  })
   const modules = {
     toolbar: [
       [{'header': [1, 2, 3, 4, 5, 6, false] }],
