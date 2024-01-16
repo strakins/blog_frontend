@@ -16,7 +16,7 @@ const Posts = () => {
     const fetchPosts = async () => {
     setIsloading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/posts/`)
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/`)
       setPosts(res?.data)
       console.log(posts)
     } catch (err) {

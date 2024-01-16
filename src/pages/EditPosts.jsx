@@ -2,13 +2,17 @@ import React, {useState, useEffect, useContext} from 'react';
 import { UserContext } from '../context/userContext';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const EditPosts = () => {
+  const {id} = useParams();
+
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('uncategorized');
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
   const {currentUser} = useContext(UserContext);
@@ -18,7 +22,28 @@ const EditPosts = () => {
     if(!token) {
       navigate('/login')
     }
-  })
+  });
+
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/${id}`)
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+        setCategory(response.data.category);
+        setThumbnail(response.data.thumbnail)
+      } catch (err) {
+        setError(err.response.data.message)
+        setTimeout(() => {
+          setError('')
+        }, 5000)
+      }
+    }
+
+    getPost();
+  }, [])
+
+
   const modules = {
     toolbar: [
       [{'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -39,13 +64,18 @@ const EditPosts = () => {
     'Art', 'Investment', 'Uncategorized', 'Weather'
   ]
 
+  
+
+
+
   return (
     <section className="create-post">
       <div className="container">
         <h2>Edit Post {title}</h2>
-        <p className='form_error_message'>
-          This is an Error Message
-        </p>
+        { error && <p className='form_error_message'>
+          {error}
+          </p>
+        }
         {/* Create Post */}
         <form action="" className="form create_post-form">
           <input 

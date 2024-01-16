@@ -3,13 +3,48 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { UserContext } from './../context/userContext';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const CreatePosts = () => {
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('uncategorized');
+  const [category, setCategory] = useState('Uncategorized');
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState('');
+  const [error, setError] = useState('')
   
+  const navigate = useNavigate();
+  const {currentUser} = useContext(UserContext);
+  const token = currentUser?.token;
+
+  // If token does not exist, redirect to login page
+  useEffect(() => {
+    if(!token) {
+      navigate('/login')
+    }
+  })
+
+  const createPost = async (e) => {
+    e.preventDefault();
+    const postData = new FormData();
+    postData.set('title', title)
+    postData.set('category', category)
+    postData.set('description', description)
+    postData.set('thumbnail', thumbnail)
+
+    try {
+      const response = await axios.post(`http://localhost:5000/api/posts/create`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+      if(response.status == 201){
+        return navigate('/')
+      }
+    } catch (err) {
+      setError(err.response.data.message)
+      setTimeout(() => {
+        setError('')
+      }, 5000)
+    }
+  }
+
   const modules = {
     toolbar: [
       [{'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -30,25 +65,20 @@ const CreatePosts = () => {
     'Art', 'Investment', 'Uncategorized', 'Weather'
   ]
   
-  const navigate = useNavigate();
-  const {currentUser} = useContext(UserContext);
-  const token = currentUser?.token;
-  // If token does not exist, redirect to login page
-  useEffect(() => {
-    if(!token) {
-      navigate('/login')
-    }
-  })
+
 
   return (
     <section className="create-post">
       <div className="container">
         <h2>Create Post</h2>
-        <p className='form_error_message'>
-          This is an Error Message
-        </p>
+        {
+          error && 
+          <p className='form_error_message'>
+            {error}
+          </p>
+        }
         {/* Create Post */}
-        <form action="" className="form create_post-form">
+        <form action="" className="form create_post-form" onSubmit={createPost}>
           <input 
             type="text" 
             placeholder='Title'
@@ -71,7 +101,7 @@ const CreatePosts = () => {
             modules={modules} 
             formats={formats}  
             value={description}
-            onChange={e => setDescription}  
+            onChange={setDescription}  
             // className='ql-editor'
           />
 

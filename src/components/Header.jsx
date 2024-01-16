@@ -18,7 +18,7 @@ const Header = () => {
             
             {currentUser?.id && 
               <ul className="nav_menu">
-                <li><Link to='/profile/shajs'>Ray  Bornes</Link></li>
+                <li><Link to='/profile/shajs'>{currentUser?.name}</Link></li>
                 <li><Link to='/create'>Create Post</Link></li>
                 <li><Link to='/authors'>Authors</Link></li>
                 <li><Link to='/logout'>Logout</Link></li>
