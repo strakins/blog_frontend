@@ -16,7 +16,8 @@ const Posts = () => {
     const fetchPosts = async () => {
     setIsloading(true);
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/`)
+      // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/`)
+      const res = await axios.get(`https://strakinsblog-server.vercel.app/api/posts/`)
       setPosts(res?.data)
       console.log(posts)
     } catch (err) {
