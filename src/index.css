@@ -120,7 +120,6 @@ nav {
   z-index: 1;
   border-bottom: 4px solid var(--color-bg);
   backdrop-filter: blur(20px);
-  /* margin-bottom: 6rem; */
 }
 
 .nav__container {
@@ -151,16 +150,15 @@ nav {
   footer {
     background: rgb(5, 5, 6);
     margin-top: 6rem;
-    margin-bottom: 6rem;
+    margin-bottom: -6rem;
+    /* margin-bottom: 6rem; */
   }
   .footer_category {
     display: flex;
-    height: 4rem;
+    height: 6rem;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    /* margin-top: 4rem; */
-    margin-bottom: 4rem;
   }
 
   .footer_category a {
@@ -181,9 +179,6 @@ nav {
     margin-bottom: 5px;
     color: white;
   }
-
-
-
 
 
 /***************** HOME  *****************/
@@ -214,6 +209,9 @@ nav {
   object-fit: cover;
   object-position: center;
 }
+.post_thumbnail img {
+  
+}
 .post-content {
   margin-top: 1.5rem;
 }
@@ -238,7 +236,10 @@ nav {
   border-radius: 50%;
   overflow: hidden;
 }
-
+.post_athor_avatar img {
+  height: inherit;
+  width: inherit;
+}
 
 
 /***************** POST DETAIL *****************/
@@ -249,11 +250,15 @@ nav {
   margin-inline: auto;
   padding: 2rem 0;
   border-radius: var(--readius-2);
+  /* overflow: hidden;  */
 }
 .post-detail-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+}
+.content-paragraph {
+ overflow: hidden;
 }
 .post-detail-buttons {
   display: flex;
@@ -351,8 +356,12 @@ input, select, textarea {
 }
 
 /***************** Authors Page  *****************/
+.authors {
+  /* height: 100vh; */
+}
 .authors_conatiner {
   display: grid;
+  /* height: 100vh; */
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
@@ -370,11 +379,15 @@ input, select, textarea {
 }
 .author_avatar {
   width: 4rem;
-  aspect-ratio: 1/1;
+  height: 4rem;
   object-fit: cover;
   border-radius: 50%;
   border: 0.3rem solid var(--color-bg);
   overflow: hidden;
+}
+.author_avatar img {
+  height: inherit;
+  width: inherit;
 }
 .author_info p {
   margin-top: 1rem;
@@ -465,10 +478,18 @@ input, select, textarea {
 
   .dashboard_post-thumbnail {
     width: 6rem;
-    border-radius: var(--readius-1);
+    border-radius: var(--readius-1); 
     overflow: hidden;
   }
+  .dashboard_post-thumbnail img {
+    height: inherit;
+    width: inherit;
+  }
 
+  .dashboard_post-thumbnail {
+    height: 100px;
+    width: 120px;
+  }
   .dashboard_post-actions {
     display: flex;
     gap: 1rem;

@@ -43,6 +43,27 @@ const EditPosts = () => {
     getPost();
   }, [])
 
+  const editPost = async (e) => {
+    e.preventDefault();
+
+    const postData = new FormData();
+    postData.set('title', title)
+    postData.set('category', category)
+    postData.set('description', description)
+    postData.set('thumbnail', thumbnail)
+
+    try {
+      const response = await axios.patch(`http://localhost:5000/api/posts/${id}`, postData, {withCredentials: true, headers: {Authorization: `Bearer ${token}`}})
+      if(response.status == 200){
+        return navigate('/')
+      }
+    } catch (err) {
+      setError(err.response.data.message)
+      setTimeout(() => {
+        setError('')
+      }, 5000)
+    }
+  }
 
   const modules = {
     toolbar: [
@@ -76,8 +97,9 @@ const EditPosts = () => {
           {error}
           </p>
         }
+
         {/* Create Post */}
-        <form action="" className="form create_post-form">
+        <form action="" className="form create_post-form" onSubmit={editPost}>
           <input 
             type="text" 
             placeholder='Title'
@@ -100,7 +122,7 @@ const EditPosts = () => {
             modules={modules} 
             formats={formats}  
             value={description}
-            onChange={e => setDescription}  
+            onChange={setDescription}  
             // className='ql-editor'
           />
 

@@ -10,7 +10,7 @@ const PostItem = ({postId, thumbnail, title, category, description, authorID, cr
   return (
     <article className='post'>
         <div className="post_thumbnail">
-            <img src={`http://localhost:5000/uploads/${thumbnail}`} alt={title} />
+            <img src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${thumbnail}`} alt={title} />
         </div>
         <div className="post-content">
             <Link to={`/posts/${postId}`}>
